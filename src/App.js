@@ -1,25 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
+var Latex = require('react-latex');
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	// const func = '$$\\int x^3 , dx = \\frac{1}{4}x^4 + C_2$$'
+    // '$$\int_0^2 (5xy + x^3) , dx = \left[5x^2y + \frac{1}{4}x^4 \right]_0^2 = (5 \cdot 2^2 y + \frac{1}{4} \cdot 2^4) - (5 \cdot 0^2 y + \frac{1}{4} \cdot 0^4) = \boxed{20 + 8}$$'
+	
+    return (
+		<div className='App'>
+			{/* <Latex>{func}</Latex> */}
+      <Latex>$3\times 4$</Latex>
+
+		</div>
+	);
 }
 
 export default App;
