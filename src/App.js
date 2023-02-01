@@ -1,5 +1,5 @@
 // Create a react component that inputs a textarea message then performs a fetch request to localhost:5000, gets back a response as a data.message and displays that message in a box below
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 var Latex = require('react-latex');
 
@@ -45,7 +45,7 @@ const App = () => {
         onSubmit={handleSubmit}
       >
         <textarea
-          className='h-12 col-span-4 block resize-none rounded-l-md p-3 outline-0 text-black shadow-md'
+          className='h-12 col-span-4 block resize-none rounded-l-md p-3 !outline-none border-0 text-black shadow-md'
           required
           placeholder="Enter a topic, e.g. Normal Distribution or Bayes' Theorem"
           value={message}
@@ -79,16 +79,21 @@ const App = () => {
           <Latex>{problem}</Latex>
 
           {/* Centered button that when clicked by user shows a div with a 'Latex' tag and hides it when being pressed again */}
-          <div className='flex justify-center mt-4'>
-            <button
-              className='w-1/4 mt-4 mb-2 rounded-md px-4 py-2 font-bold bg-yellow-300 shadow-md text-bg-cyan'
-              onClick={() => {
-                document.getElementById('solution').classList.toggle('hidden');
-              }}
-            >
-              Show Solution
-            </button>
-          </div>
+          {/* Show div only if response is defined */}
+          {response && (
+            <div className='flex justify-center mt-4'>
+              <button
+                className='w-1/4 mt-4 mb-2 rounded-md px-4 py-2 font-bold bg-yellow-300 shadow-md text-bg-cyan'
+                onClick={() => {
+                  document
+                    .getElementById('solution')
+                    .classList.toggle('hidden');
+                }}
+              >
+                Show Solution
+              </button>
+            </div>
+          )}
           <div id='solution' className='hidden'>
             <p className='w-full mb-4 text-center text-xl font-bold text-bg-cyan'>
               Solution
