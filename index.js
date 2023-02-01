@@ -1,4 +1,6 @@
 // An express server that handles requests to the API coming in and responds with a json object, uses body parser and cors
+require('dotenv').config();
+
 const OpenAI = require('openai');
 const { Configuration, OpenAIApi } = OpenAI;
 const configuration = new Configuration({

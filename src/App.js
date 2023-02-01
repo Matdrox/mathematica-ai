@@ -21,13 +21,21 @@ const App = () => {
   };
 
   return (
-    <div className='bg-blue-200 resize-none'>
-      <form onSubmit={handleSubmit}>
+    <div>
+      <form className='flex justify-center my-32' onSubmit={handleSubmit}>
         <textarea
+          className='h-12 w-1/2 resize-none rounded-l-md p-3 outline-0'
+          required
+					placeholder='Enter your math problem'
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type='submit'>Solve</button>
+        <button
+          className='h-12 rounded-r-md px-4 py-2 bg-teal-800 text-white'
+          type='submit'
+        >
+          Solve
+        </button>
       </form>
       <div>{response}</div>
     </div>
