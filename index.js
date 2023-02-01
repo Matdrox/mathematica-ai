@@ -20,10 +20,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/', async (req, res) => {
+  const { message } = req.body;
   const response = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: 'Say this is a test',
-    max_tokens: 7,
+    prompt: `If a mathematical problem is not provided, answer with 'No'.
+	Otherwise, if a mathematical problem is provided, answer it very shortly without text, only in LaTeX: ${message}.`,
+    max_tokens: 20,
     temperature: 0,
   });
   console.log(response.data.choices[0].text);
