@@ -20,13 +20,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.post('/', async (req, res) => {
-  const { message } = req.body;
+  const { message, difficulty } = req.body;
   const response = await openai.createCompletion({
     model: 'text-davinci-003',
     // prompt: `If a mathematical problem is not provided, answer with 'No'.
-	// Otherwise, if a mathematical problem is provided, answer it very shortly without text, only in LaTeX: ${message}.`,
-	prompt: `Answer using LaTeX: Generate a mathematical problem for me to solve about ${message}.`,
-    max_tokens: 20,
+    // Otherwise, if a mathematical problem is provided, answer it very shortly without text, only in LaTeX: ${message}.`,
+    prompt: `Write "Problem: " and generate a mathematical problem with ${difficulty} difficulty for me to solve
+  about ${message}. Write it in LaTeX. Then, write "Solution: " and solve the problem.`,
+    max_tokens: 50,
     temperature: 0,
   });
   console.log(response.data.choices[0].text);
