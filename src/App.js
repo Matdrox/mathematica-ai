@@ -1,18 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-var Latex = require('react-latex');
+// Create a react component that inputs a textarea message then performs a fetch request to localhost:5000, gets back a response as a data.message and displays that message in a box below
+import React, { useState } from 'react';
 
-function App() {
-	// const func = '$$\\int x^3 , dx = \\frac{1}{4}x^4 + C_2$$'
-    // '$$\int_0^2 (5xy + x^3) , dx = \left[5x^2y + \frac{1}{4}x^4 \right]_0^2 = (5 \cdot 2^2 y + \frac{1}{4} \cdot 2^4) - (5 \cdot 0^2 y + \frac{1}{4} \cdot 0^4) = \boxed{20 + 8}$$'
-	
-    return (
-		<div className='App'>
-			{/* <Latex>{func}</Latex> */}
-      <Latex>$3\times 4$</Latex>
+const App = () => {
+  const [message, setMessage] = useState('');
+  const [response, setResponse] = useState('');
 
-		</div>
-	);
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('http://localhost:5000', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setResponse(data.message);
+      });
+  };
+
+  return (
+    <div className='bg-blue-200 resize-none'>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button type='submit'>Solve</button>
+      </form>
+      <div>{response}</div>
+    </div>
+  );
+};
 
 export default App;
