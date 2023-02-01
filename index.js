@@ -23,8 +23,9 @@ app.post('/', async (req, res) => {
   const { message } = req.body;
   const response = await openai.createCompletion({
     model: 'text-davinci-003',
-    prompt: `If a mathematical problem is not provided, answer with 'No'.
-	Otherwise, if a mathematical problem is provided, answer it very shortly without text, only in LaTeX: ${message}.`,
+    // prompt: `If a mathematical problem is not provided, answer with 'No'.
+	// Otherwise, if a mathematical problem is provided, answer it very shortly without text, only in LaTeX: ${message}.`,
+	prompt: `Answer using LaTeX: Generate a mathematical problem for me to solve about ${message}.`,
     max_tokens: 20,
     temperature: 0,
   });

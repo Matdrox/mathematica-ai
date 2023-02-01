@@ -1,5 +1,6 @@
 // Create a react component that inputs a textarea message then performs a fetch request to localhost:5000, gets back a response as a data.message and displays that message in a box below
 import React, { useState } from 'react';
+import './App.css';
 var Latex = require('react-latex');
 
 const App = () => {
@@ -28,14 +29,14 @@ const App = () => {
         <h2 className='text-xl text-center'>AI Math Helper</h2>
         <form className='flex justify-center my-4' onSubmit={handleSubmit}>
           <textarea
-            className='h-12 w-1/2 resize-none rounded-l-md p-3 outline-0 text-black'
+            className='h-12 w-1/2 resize-none rounded-l-md p-3 outline-0 text-black shadow-md'
             required
             placeholder='Enter your math problem'
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
           <button
-            className='h-12 rounded-r-md px-4 py-2 bg-teal-800 font-bold'
+            className='h-12 rounded-r-md px-4 py-2 font-bold bg-yellow-400 shadow-md text-bg-cyan'
             type='submit'
           >
             Solve
@@ -43,8 +44,8 @@ const App = () => {
         </form>
 
         <div className='flex justify-center'>
-          <div className='flex-col w-2/3 h-96 p-3 rounded-md bg-white text-black'>
-            <p className='w-full'>Solution:</p>
+          <div className='flex-col w-2/3 h-96 p-3 rounded-md bg-white text-black shadow-md'>
+            <p className='w-full text-center text-xl font-bold text-bg-cyan'>Solution</p>
             <Latex>{response}</Latex>
           </div>
         </div>
