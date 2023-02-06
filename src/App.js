@@ -9,8 +9,10 @@ const App = () => {
 	const [difficulty, setDifficulty] = useState('easy');
 
 	// Split 'response' into two parts, the problem and the solution. The problem starts with 'Problem: ' and ends with 'Solution: ' and the solution starts with 'Solution: ' and ends with the end of the string
-	const problem = response.split('Solution: ')[0].replace('Problem: ', '');
-	const solution = response.split('Solution: ')[1];
+	// const problem = response.split('Solution: ')[0].replace('Problem: ', '');
+	// const solution = response.split('Solution: ')[1];
+	const problem = response;
+	const solution = response;
 
 	// Show value of 'difficulty' in console whenever it changes
 	// useEffect(() => {
@@ -71,35 +73,31 @@ const App = () => {
 				</button>
 			</form>
 
-			{response || (
-				<div className='flex justify-center w-full mt-4'>
-					<div className='h-96 w-2/3 p-3 rounded-md bg-white text-black '>
-						<p className='w-full mb-4 text-center text-xl font-bold'>Problem</p>
-						<Latex>{problem}</Latex>
+			<div className='flex justify-center w-full mt-4'>
+				<div className='h-96 w-2/3 p-3 rounded-md bg-white text-black '>
+					<p className='w-full mb-4 text-center text-xl font-bold'>Problem</p>
 
-						{/* Centered button that when clicked by user shows a div with a 'Latex' tag and hides it when being pressed again */}
-						{/* Show div only if response is defined */}
-						<div className='flex justify-center mt-4'>
-							<button
-								className='h-12 w-1/4 mt-4 mb-2 rounded-md px-4 py-2 font-bold bg-black text-white'
-								onClick={() => {
-									document
-										.getElementById('solution')
-										.classList.toggle('hidden');
-								}}
-							>
-								Show Solution
-							</button>
-						</div>
-						<div id='solution' className='hidden'>
-							<p className='w-full mb-4 text-center text-xl font-bold text-bg-cyan'>
-								Solution
-							</p>
-							<Latex>{solution}</Latex>
-						</div>
+	  				{/*Latex tag that renders the problem variable as a latex equation surrounded by '$$'*/}
+					<Latex>{'$$' + problem + '$$'}</Latex>
+
+					<div className='flex justify-center mt-4'>
+						<button
+							className='h-12 w-1/4 mt-4 mb-2 rounded-md px-4 py-2 font-bold bg-black text-white'
+							onClick={() => {
+								document.getElementById('solution').classList.toggle('hidden');
+							}}
+						>
+							Show Solution
+						</button>
+					</div>
+					<div id='solution' className='hidden'>
+						<p className='w-full mb-4 text-center text-xl font-bold text-bg-cyan'>
+							Solution
+						</p>
+						<Latex>{'$$' + solution + '$$'}</Latex>
 					</div>
 				</div>
-			)}
+			</div>
 		</div>
 	);
 };
