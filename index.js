@@ -25,12 +25,15 @@ app.post('/', async (req, res) => {
 		model: 'text-davinci-003',
 		//   prompt: `Without going over 170 characters, using LaTeX, write "Problem: " and generate a mathematical problem with ${difficulty} difficulty for me to solve
 		// about ${message}. Then, write "Solution: " and solve the problem.`,
-		prompt: `Without going over 90 characters, using '$' in LaTeX, generate a mathematical problem with ${difficulty} difficulty about the topic of ${message}, but do NOT solve it.`,
+		prompt: `Using '$' in LaTeX, generate a mathematical problem with ${difficulty} difficulty about the topic of ${message} that I can solve`,
 
-		max_tokens: 50,
+		max_tokens: 70,
 		temperature: 0,
 	});
 	console.log(response.data.choices[0].text);
+	console.log(response.data.choices);
+	console.log(response.data.choices.length);
+  console.log(difficulty, message)
 	if (response.data.choices[0].text) {
 		res.json({ message: response.data.choices[0].text });
 	}
