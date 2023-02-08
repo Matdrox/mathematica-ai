@@ -78,7 +78,7 @@ const App = () => {
 					<p className='w-full mb-4 text-center text-xl font-bold'>Problem</p>
 
 	  				{/*Latex tag that renders the problem variable as a latex equation surrounded by '$$'*/}
-					<Latex>{'$$' + problem + '$$'}</Latex>
+					<Latex>{problem}</Latex>
 
 					<div className='flex justify-center mt-4'>
 						<button

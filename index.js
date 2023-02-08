@@ -25,7 +25,7 @@ app.post('/', async (req, res) => {
 		model: 'text-davinci-003',
 		//   prompt: `Without going over 170 characters, using LaTeX, write "Problem: " and generate a mathematical problem with ${difficulty} difficulty for me to solve
 		// about ${message}. Then, write "Solution: " and solve the problem.`,
-		prompt: `Without going over 90 characters, using LaTeX, generate a mathematical problem with ${difficulty} difficulty about the topic of ${message}, but do NOT solve it.`,
+		prompt: `Without going over 90 characters, using '$' in LaTeX, generate a mathematical problem with ${difficulty} difficulty about the topic of ${message}, but do NOT solve it.`,
 
 		max_tokens: 50,
 		temperature: 0,
